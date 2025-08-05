@@ -86,10 +86,7 @@ class Festival(ContentDetailBase):
         db_table = 'festival'
 
 
-class Info(ContentDetailBase):
-    """
-    ERD 상 'info' / alias 'food_store' 테이블
-    """
+class Foodstore(ContentDetailBase):
     chk_credit     = models.CharField(max_length=100, blank=True, help_text="신용카드 가능정보")
     discount_info  = models.TextField(blank=True, help_text="할인 정보")
     open_time      = models.CharField(max_length=100, blank=True, help_text="영업일")
@@ -101,7 +98,7 @@ class Info(ContentDetailBase):
     treat_menu     = models.TextField(blank=True, help_text="취급 메뉴")
 
     class Meta:
-        db_table = 'info'
+        db_table = 'food_store'
 
 
 class Course(ContentDetailBase):
