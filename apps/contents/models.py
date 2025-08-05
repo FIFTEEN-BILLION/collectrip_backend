@@ -86,7 +86,7 @@ class Festival(ContentDetailBase):
         db_table = 'festival'
 
 
-class Foodstore(ContentDetailBase):
+class FoodStore(ContentDetailBase):
     chk_credit     = models.CharField(max_length=100, blank=True, help_text="신용카드 가능정보")
     discount_info  = models.TextField(blank=True, help_text="할인 정보")
     open_time      = models.CharField(max_length=100, blank=True, help_text="영업일")
