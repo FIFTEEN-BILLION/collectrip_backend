@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import TimeStampedModel 
+from apps.users.models import TimeStampedModel 
 
 class Content(TimeStampedModel):
     """

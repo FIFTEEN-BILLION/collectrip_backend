@@ -1,6 +1,6 @@
 from django.db import models
-from users.models import User, TimeStampedModel
-from contents.models import Content
+from apps.users.models import User, TimeStampedModel
+from apps.contents.models import Content
 
 class Collector(TimeStampedModel):
     """
