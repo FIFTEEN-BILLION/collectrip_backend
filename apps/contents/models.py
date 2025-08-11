@@ -21,16 +21,14 @@ class Content(TimeStampedModel):
         blank=True,
         help_text="상세주소"
     )
+    areacode         = models.CharField(
+        help_text="지역 코드"
+    )
     map_x            = models.FloatField(
         help_text="GPS X좌표"
     )
     map_y            = models.FloatField(
         help_text="GPS Y좌표"
-    )
-    tel              = models.CharField(
-        max_length=50,
-        blank=True,
-        help_text="연락처"
     )
     title            = models.CharField(
         max_length=255,
@@ -41,6 +39,21 @@ class Content(TimeStampedModel):
     )
     dong_sigungu_code= models.IntegerField(
         help_text="법정동(시군구) 코드"
+    )
+    cat1             = models.CharField(
+        help_text="대분류"
+    )
+    cat2             = models.CharField(
+        help_text="중분류"
+    )
+    cat3             = models.CharField(
+        help_text="소분류"
+    )
+    sigungu_code     = models.CharField(
+        help_text="시군구코드"
+    )
+    image2           = models.CharField(
+        help_text="썸네일 이미지 URL"
     )
 
     class Meta:
