@@ -21,8 +21,20 @@ class Content(TimeStampedModel):
         blank=True,
         help_text="상세주소"
     )
+    cat1             = models.CharField(
+        help_text="대분류"
+    )
+    cat2             = models.CharField(
+        help_text="중분류"
+    )
+    cat3             = models.CharField(
+        help_text="소분류"
+    )
     areacode         = models.CharField(
         help_text="지역 코드"
+    )
+    sigungu_code     = models.CharField(
+        help_text="시군구코드"
     )
     map_x            = models.FloatField(
         help_text="GPS X좌표"
@@ -39,18 +51,6 @@ class Content(TimeStampedModel):
     )
     dong_sigungu_code= models.IntegerField(
         help_text="법정동(시군구) 코드"
-    )
-    cat1             = models.CharField(
-        help_text="대분류"
-    )
-    cat2             = models.CharField(
-        help_text="중분류"
-    )
-    cat3             = models.CharField(
-        help_text="소분류"
-    )
-    sigungu_code     = models.CharField(
-        help_text="시군구코드"
     )
     image2           = models.CharField(
         help_text="썸네일 이미지 URL"
@@ -85,30 +85,24 @@ class ContentDetailBase(TimeStampedModel):
 
 
 class Festival(ContentDetailBase):
-    booking_place  = models.CharField(max_length=255, blank=True, help_text="예매처")
-    discount_info  = models.TextField(blank=True, help_text="할인 정보")
-    event_homepage = models.URLField(blank=True, help_text="행사 홈페이지")
+    event_place    = models.CharField(null=True, blank=True, help_text="행사 장소")
     event_startdate= models.DateField(null=True, blank=True, help_text="행사 시작일")
     event_enddate  = models.DateField(null=True, blank=True, help_text="행사 종료일")
-    place_info     = models.TextField(blank=True, help_text="행사장 위치 안내")
     play_time      = models.CharField(max_length=100, blank=True, help_text="공연 시간")
-    program        = models.TextField(blank=True, help_text="행사 프로그램")
-    use_time       = models.CharField(max_length=100, blank=True, help_text="이용 요금")
+    use_fee        = models.CharField(max_length=100, blank=True, help_text="이용 요금")
 
     class Meta:
         db_table = 'festival'
 
 
 class FoodStore(ContentDetailBase):
-    chk_credit     = models.CharField(max_length=100, blank=True, help_text="신용카드 가능정보")
-    discount_info  = models.TextField(blank=True, help_text="할인 정보")
-    open_time      = models.CharField(max_length=100, blank=True, help_text="영업일")
-    packing        = models.BooleanField(default=False, help_text="포장 가능 여부")
-    parking        = models.CharField(max_length=100, blank=True, help_text="주차 시설")
-    reservation    = models.CharField(max_length=255, blank=True, help_text="예약 안내")
-    rest_date      = models.CharField(max_length=100, blank=True, help_text="쉬는 날")
-    scale          = models.CharField(max_length=100, blank=True, help_text="규모")
+    first_menu     = models.TextField(blank=True, help_text="대표 메뉴")
     treat_menu     = models.TextField(blank=True, help_text="취급 메뉴")
+    info_center    = models.CharField(max_length=100, blank=True, help_text="문의 및 안내")
+    open_time      = models.CharField(max_length=100, blank=True, help_text="영업일")
+    rest_date      = models.CharField(max_length=100, blank=True, help_text="쉬는 날")
+    chk_credit     = models.CharField(max_length=100, blank=True, help_text="신용카드 가능정보")
+    parking        = models.CharField(max_length=100, blank=True, help_text="주차 시설")
 
     class Meta:
         db_table = 'food_store'
@@ -116,9 +110,8 @@ class FoodStore(ContentDetailBase):
 
 class Course(ContentDetailBase):
     distance       = models.CharField(max_length=100, blank=True, help_text="코스 총 거리")
-    info_center    = models.CharField(max_length=100, blank=True, help_text="문의 및 안내")
     take_time      = models.CharField(max_length=100, blank=True, help_text="총 소요 시간")
-    theme          = models.CharField(max_length=100, blank=True, help_text="코스 테마")
+    info_center    = models.CharField(max_length=100, blank=True, help_text="문의 및 안내")
 
     class Meta:
         db_table = 'course'
