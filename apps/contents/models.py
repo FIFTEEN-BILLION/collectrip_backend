@@ -29,23 +29,23 @@ class Content(TimeStampedModel):
         help_text="상세주소"
     )
     cat1             = models.CharField(
-        max_length=LEN_CAT
+        max_length=LEN_CAT,
         help_text="대분류"
     )
     cat2             = models.CharField(
-        max_length=LEN_CAT
+        max_length=LEN_CAT,
         help_text="중분류"
     )
     cat3             = models.CharField(
-        max_length=LEN_CAT
+        max_length=LEN_CAT,
         help_text="소분류"
     )
     areacode         = models.CharField(
-        max_length=LEN_CODE_SHORT
+        max_length=LEN_CODE_SHORT,
         help_text="지역 코드"
     )
     sigungu_code     = models.CharField(
-        max_length=LEN_CODE_SHORT
+        max_length=LEN_CODE_SHORT,
         help_text="시군구코드"
     )
     map_x            = models.FloatField(
@@ -58,16 +58,16 @@ class Content(TimeStampedModel):
         max_length=255,
         help_text="제목"
     )
-    dong_region_code = models.IntegerField(
-        max_length=LEN_CODE_SHORT
+    dong_region_code = models.CharField(
+        max_length=LEN_CODE_SHORT,
         help_text="법정동(시도) 코드"
     )
-    dong_sigungu_code= models.IntegerField(
-        max_length=LEN_CODE_SHORT
+    dong_sigungu_code= models.CharField(
+        max_length=LEN_CODE_SHORT,
         help_text="법정동(시군구) 코드"
     )
     image2           = models.URLField(
-        max_length=LEN_MED, blank=True
+        max_length=LEN_MED, blank=True,
         help_text="썸네일 이미지 URL"
     )
 
@@ -101,8 +101,8 @@ class ContentDetailBase(TimeStampedModel):
 
 class Festival(ContentDetailBase):
     event_place    = models.CharField(max_length=LEN_MED, null=True, blank=True, help_text="행사 장소")
-    event_startdate= models.DateField(max_length=LEN_MED, null=True, blank=True, help_text="행사 시작일")
-    event_enddate  = models.DateField(max_length=LEN_MED, null=True, blank=True, help_text="행사 종료일")
+    event_startdate= models.DateField(null=True, blank=True, help_text="행사 시작일")
+    event_enddate  = models.DateField(null=True, blank=True, help_text="행사 종료일")
     play_time      = models.CharField(max_length=LEN_SMALL, blank=True, help_text="공연 시간")
     use_fee        = models.CharField(max_length=LEN_SMALL, blank=True, help_text="이용 요금")
 
