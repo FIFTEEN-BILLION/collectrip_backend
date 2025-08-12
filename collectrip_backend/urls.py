@@ -19,4 +19,7 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # 'api/v1/'로 시작하는 모든 주소는 이제부터 apps.users.urls 파일이 담당
+    path('api/v1/', include('apps.users.urls')),
 ]
