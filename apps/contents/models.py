@@ -119,11 +119,10 @@ class Course(ContentDetailBase):
 
 class TouristAttraction(ContentDetailBase):
     chk_credit     = models.CharField(max_length=100, blank=True, help_text="신용카드 가능정보")
-    info_center    = models.CharField(max_length=100, blank=True, help_text="문의 및 안내")
-    open_date      = models.DateField(null=True, blank=True, help_text="개장일")
     parking        = models.CharField(max_length=100, blank=True, help_text="주차 시설")
     rest_date      = models.CharField(max_length=100, blank=True, help_text="쉬는 날")
     use_time       = models.CharField(max_length=100, blank=True, help_text="이용 시간")
+    info_center    = models.CharField(max_length=100, blank=True, help_text="문의 및 안내")
 
     class Meta:
         db_table = 'tourist_attraction'
@@ -131,7 +130,6 @@ class TouristAttraction(ContentDetailBase):
 
 class Culture(ContentDetailBase):
     chk_credit     = models.CharField(max_length=100, blank=True, help_text="신용카드 가능정보")
-    discount_info  = models.TextField(blank=True, help_text="할인 정보")
     info_center    = models.CharField(max_length=100, blank=True, help_text="문의 및 안내")
     parking        = models.CharField(max_length=100, blank=True, help_text="주차 시설")
     rest_date      = models.CharField(max_length=100, blank=True, help_text="쉬는 날")
@@ -146,29 +144,20 @@ class Shopping(ContentDetailBase):
     chk_credit     = models.CharField(max_length=100, blank=True, help_text="신용카드 가능정보")
     fair_day       = models.CharField(max_length=100, blank=True, help_text="장 서는 날")
     info_center    = models.CharField(max_length=100, blank=True, help_text="문의 및 안내")
-    open_date      = models.DateField(null=True, blank=True, help_text="개장일")
     open_time      = models.CharField(max_length=100, blank=True, help_text="영업 시간")
     parking        = models.CharField(max_length=100, blank=True, help_text="주차 시설")
     rest_date      = models.CharField(max_length=100, blank=True, help_text="쉬는 날")
     sale_item      = models.CharField(max_length=255, blank=True, help_text="판매 품목")
-    sale_item_cost = models.CharField(max_length=255, blank=True, help_text="판매 품목별 가격")
-    shop_guide     = models.TextField(blank=True, help_text="매장 안내")
 
     class Meta:
         db_table = 'shopping'
 
 
 class Leports(ContentDetailBase):
-    accom_count    = models.IntegerField(null=True, blank=True, help_text="수용 인원")
     chk_credit     = models.CharField(max_length=100, blank=True, help_text="신용카드 가능정보")
-    exp_age_range  = models.CharField(max_length=100, blank=True, help_text="체험 가능 연령")
     info_center    = models.CharField(max_length=100, blank=True, help_text="문의 및 안내")
-    open_period    = models.CharField(max_length=100, blank=True, help_text="운영 기간")
-    parking_fee    = models.CharField(max_length=100, blank=True, help_text="주차 요금")
     parking        = models.CharField(max_length=100, blank=True, help_text="주차 시설")
-    reservation    = models.CharField(max_length=255, blank=True, help_text="예약 안내")
     rest_date      = models.CharField(max_length=100, blank=True, help_text="쉬는 날")
-    use_fee        = models.CharField(max_length=100, blank=True, help_text="입장료")
     use_time       = models.CharField(max_length=100, blank=True, help_text="이용 시간")
 
     class Meta:
