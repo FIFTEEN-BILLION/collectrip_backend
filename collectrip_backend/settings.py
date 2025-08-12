@@ -115,6 +115,11 @@ from datetime import timedelta
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=2),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": True,
+
+    # JWT의 user_id 클레임으로 사용할 필드를 지정합니다.
+    "USER_ID_FIELD": "user_id", 
 }
 
 # Password validation
