@@ -1,0 +1,18 @@
+# 가상환경
+__pycache__/
+*.pyc
+
+# 환경변수
+.env
+
+# 데이터베이스 (sqlite 등)
+db.sqlite3
+
+# Django static/media
+staticfiles/
+media/
+
+# macOS, VSCode, Windows 등 편의 파일
+.DS_Store
+.vscode/
+Thumbs.db
