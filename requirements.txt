@@ -2,3 +2,6 @@ Django==4.2
 djangorestframework
 mysqlclient
 python-dotenv
+requests
+djangorestframework-simplejwt
+django-environ
