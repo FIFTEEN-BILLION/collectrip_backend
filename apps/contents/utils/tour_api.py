@@ -1,5 +1,5 @@
 # contents/utils/tourapi.py
-
+import os
 import requests
 import logging
 from django.conf import settings
@@ -8,15 +8,24 @@ from django.conf import settings
 logger = logging.getLogger(__name__)
 
 class TourAPI:
-    """
-    한국관광공사 TourAPI 연동을 위한 유틸리티 클래스
-    (areaBasedList2, detailIntro2 버전 기준)
-    """
-    def __init__(self):
-        self.api_key = settings.TOUR_API_KEY
+    def __init__(self, api_key=None): # api_key를 인자로 받을 수 있도록 변경
+        """
+        TourAPI 클래스 초기화.
+        api_key가 주어지면 그 값을 사용하고, 없으면 Django settings에서 가져옵니다.
+        """
+        if api_key:
+            self.api_key = api_key
+        else:
+            # Django settings에 의존하는 부분을 fallback(대안)으로 변경
+            self.api_key = getattr(settings, 'TOUR_API_KEY', None)
+
+        # os.environ을 직접 사용하는 방법 (참고용)
+        # self.api_key = api_key or os.environ.get('TOUR_API_KEY')
+        
         if not self.api_key:
-            raise ValueError("TOUR_API_KEY가 설정되지 않았습니다. settings.py를 확인해주세요.")
-        self.base_url = "http://apis.data.go.kr/B551011/KorService2" 
+            raise ValueError("TourAPI API Key가 없습니다. 클래스에 직접 전달하거나 settings.py에 설정해주세요.")
+            
+        self.base_url = "http://apis.data.go.kr/B551011/KorService2"
         self.default_params = {
             "serviceKey": self.api_key,
             "MobileOS": "ETC",
@@ -88,7 +97,7 @@ class TourAPI:
         categoryCode2 (서비스 분류코드 조회) API 호출
         """
         # 2버전 API의 기본 URL을 사용합니다.
-        endpoint = f"http://apis.data.go.kr/B551011/KorService/categoryCode2"
+        endpoint = f"{self.base_url}/categoryCode2"
         params = {
             **self.default_params,
             "contentTypeId": content_type_id,
