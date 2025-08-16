@@ -16,8 +16,7 @@ class TourAPI:
         self.api_key = settings.TOUR_API_KEY
         if not self.api_key:
             raise ValueError("TOUR_API_KEY가 설정되지 않았습니다. settings.py를 확인해주세요.")
-        # 공통 서비스 URL이 2버전은 다릅니다.
-        self.base_url = "http://apis.data.go.kr/B551011/KorService" 
+        self.base_url = "http://apis.data.go.kr/B551011/KorService2" 
         self.default_params = {
             "serviceKey": self.api_key,
             "MobileOS": "ETC",
@@ -54,7 +53,7 @@ class TourAPI:
         """
         areaBasedList2 (지역기반 관광정보조회) API 호출
         """
-        endpoint = f"{self.base_url}/areaBasedList" # 1, 2 버전이 같은 엔드포인트를 사용합니다.
+        endpoint = f"{self.base_url}/areaBasedList2"
         params = {
             **self.default_params,
             "areaCode": area_code,
@@ -74,7 +73,7 @@ class TourAPI:
         """
         detailIntro2 (소개정보조회) API 호출
         """
-        endpoint = f"{self.base_url}/detailIntro" # 1, 2 버전이 같은 엔드포인트를 사용합니다.
+        endpoint = f"{self.base_url}/detailIntro2" 
         params = {
             **self.default_params,
             "contentId": content_id,
@@ -82,4 +81,22 @@ class TourAPI:
         }
         
         logger.info(f"detailIntro2 호출: content_id={content_id}, content_type_id={content_type_id}")
+        return self._make_request(endpoint, params)
+    
+    def get_category_codes(self, content_type_id=None, cat1=None, cat2=None):
+        """
+        categoryCode2 (서비스 분류코드 조회) API 호출
+        """
+        # 2버전 API의 기본 URL을 사용합니다.
+        endpoint = f"http://apis.data.go.kr/B551011/KorService/categoryCode2"
+        params = {
+            **self.default_params,
+            "contentTypeId": content_type_id,
+            "cat1": cat1,
+            "cat2": cat2,
+        }
+        # 값이 없는 파라미터는 제거
+        params = {k: v for k, v in params.items() if v is not None and v != ''}
+        
+        logger.info(f"categoryCode2 호출: contentTypeId={content_type_id}, cat1={cat1}")
         return self._make_request(endpoint, params)
