@@ -159,3 +159,46 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    # 로그 형식을 정의합니다.
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+    },
+    # 로그를 처리하는 방식을 정의합니다 (파일, 콘솔 등).
+    "handlers": {
+        # INFO 레벨 이상의 모든 로그를 importer.log 파일에 저장
+        "file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": "importer.log",
+            "formatter": "verbose",
+        },
+        # ERROR 레벨 이상의 로그만 importer.error.log 파일에 저장
+        "error_file": {
+            "level": "ERROR",
+            "class": "logging.FileHandler",
+            "filename": "importer.error.log",
+            "formatter": "verbose",
+        },
+        # 콘솔에도 기존처럼 로그를 출력
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+    },
+    # 어떤 로거가 어떤 핸들러를 사용할지 정의합니다.
+    "loggers": {
+        "collectrip_importer": { # 우리 커맨드에서 사용하는 로거 이름
+            "handlers": ["console", "file", "error_file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}
