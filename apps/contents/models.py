@@ -49,9 +49,11 @@ class Content(TimeStampedModel):
         help_text="시군구코드"
     )
     map_x            = models.FloatField(
+        null=True, blank=True,
         help_text="GPS X좌표"
     )
     map_y            = models.FloatField(
+        null=True, blank=True,
         help_text="GPS Y좌표"
     )
     title            = models.CharField(
@@ -104,7 +106,7 @@ class Festival(ContentDetailBase):
     event_startdate= models.DateField(null=True, blank=True, help_text="행사 시작일")
     event_enddate  = models.DateField(null=True, blank=True, help_text="행사 종료일")
     play_time      = models.CharField(max_length=LEN_SMALL, blank=True, help_text="공연 시간")
-    use_fee        = models.CharField(max_length=LEN_SMALL, blank=True, help_text="이용 요금")
+    use_fee        = models.TextField(blank=True, help_text="이용 요금")
 
     class Meta:
         db_table = 'festival'
@@ -148,7 +150,7 @@ class Culture(ContentDetailBase):
     info_center    = models.CharField(max_length=LEN_SMALL, blank=True, help_text="문의 및 안내")
     parking        = models.CharField(max_length=LEN_SMALL, blank=True, help_text="주차 시설")
     rest_date      = models.CharField(max_length=LEN_SMALL, blank=True, help_text="쉬는 날")
-    use_fee        = models.CharField(max_length=LEN_SMALL, blank=True, help_text="이용 요금")
+    use_fee        = models.TextField(blank=True, help_text="이용 요금")
     use_time       = models.CharField(max_length=LEN_SMALL, blank=True, help_text="이용 시간")
 
     class Meta:
