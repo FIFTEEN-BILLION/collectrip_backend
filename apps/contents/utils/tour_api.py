@@ -58,7 +58,7 @@ class TourAPI:
             logger.error("TourAPI 응답 JSON 파싱 중 에러 발생")
             return None
 
-    def get_area_based_list2(self, area_code=None, content_type_id=None, cat1=None, cat2=None, cat3=None, page_no=1):
+    def get_area_based_list2(self, area_code=None, sigungu_code=None, content_type_id=None, cat1=None, cat2=None, cat3=None, page_no=1):
         """
         areaBasedList2 (지역기반 관광정보조회) API 호출
         """
@@ -66,6 +66,7 @@ class TourAPI:
         params = {
             **self.default_params,
             "areaCode": area_code,
+            "sigunguCode": sigungu_code,
             "contentTypeId": content_type_id,
             "cat1": cat1,
             "cat2": cat2,
@@ -108,4 +109,20 @@ class TourAPI:
         params = {k: v for k, v in params.items() if v is not None and v != ''}
         
         logger.info(f"categoryCode2 호출: contentTypeId={content_type_id}, cat1={cat1}")
+        return self._make_request(endpoint, params)
+    
+
+    def get_area_codes(self, area_code=None):
+        """
+        areaCode2 (지역코드 조회) API를 호출합니다. (v2 사용)
+        area_code 인자가 없으면 광역지역코드, 있으면 해당 지역의 시군구 코드를 조회합니다.
+        """
+        endpoint = f"{self.base_url}/areaCode2"
+        params = {
+            **self.default_params,
+            "areaCode": area_code,
+            "numOfRows": 100,
+        }
+        params = {k: v for k, v in params.items() if v is not None}
+        logger.info(f"areaCode2 호출: area_code={area_code}")
         return self._make_request(endpoint, params)
