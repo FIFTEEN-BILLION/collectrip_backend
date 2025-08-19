@@ -16,3 +16,6 @@ media/
 .DS_Store
 .vscode/
 Thumbs.db
+
+# Log files
+*.log
